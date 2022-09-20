@@ -60,20 +60,20 @@ export default class PipelineConstruct {
                     { id: "dev-east-2", stackBuilder: blueprint.clone('us-east-2')},
                 ]
             })
-            .stage({
-                id: 'us-east-2-uat',
-                stackBuilder: blueprint.clone('us-east-2'),
-                stageProps: {
-                    pre: [new blueprints.pipelines.cdkpipelines.ManualApprovalStep('manual-approval')]
-                }
-            })
-            .wave( {
-                id: "prod",
-                stages: [
-                    { id: "prod-west-1", stackBuilder: blueprint.clone('us-west-1')},
-                    { id: "prod-east-2", stackBuilder: blueprint.clone('us-east-2')},
-                ]
-            })
+            // .stage({
+            //     id: 'us-east-2-uat',
+            //     stackBuilder: blueprint.clone('us-east-2'),
+            //     stageProps: {
+            //         pre: [new blueprints.pipelines.cdkpipelines.ManualApprovalStep('manual-approval')]
+            //     }
+            // })
+            // .wave( {
+            //     id: "prod",
+            //     stages: [
+            //         { id: "prod-west-1", stackBuilder: blueprint.clone('us-west-1')},
+            //         { id: "prod-east-2", stackBuilder: blueprint.clone('us-east-2')},
+            //     ]
+            // })
             .build(scope, "pipeline", props);
     }
 

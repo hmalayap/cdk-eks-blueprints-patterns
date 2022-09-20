@@ -6,7 +6,7 @@ const app = new cdk.App();
 
 // CDK Default Environment - default account and region
 const account = process.env.CDK_DEFAULT_ACCOUNT!;
-const region = process.env.CDK_DEFAULT_REGION!;
+const region = 'us-west-1';
 const env: cdk.Environment = { account: account, region: region };
 
 

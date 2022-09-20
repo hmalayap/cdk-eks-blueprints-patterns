@@ -156,38 +156,38 @@ export default class PipelineMultiEnvGitops {
                                 .addOns(
                                     devArgoAddonConfig,
                                 )
-                        },
-                        {
-                            id: TEST_ENV_ID,
-                            stackBuilder: blueprint
-                                .clone(pipelineProps.devEnv.region, pipelineProps.devEnv.account)
-                                .name(TEST_ENV_ID)
-                                .teams(...testTeams)
-                                .addOns(
-                                    testArgoAddonConfig,
-                                )
-                        },
+                        }
+                       // {
+                         //   id: TEST_ENV_ID,
+                         //   stackBuilder: blueprint
+                         //       .clone(pipelineProps.devEnv.region, pipelineProps.devEnv.account)
+                         //       .name(TEST_ENV_ID)
+                         //       .teams(...testTeams)
+                         //       .addOns(
+                         //           testArgoAddonConfig,
+                         //       )
+                        //},
 
                     ],
-                    props: {
-                        post: [new blueprints.pipelines.cdkpipelines.ManualApprovalStep('manual-approval-before-production')]
-                    }
+                    //props: {
+                      //  post: [new blueprints.pipelines.cdkpipelines.ManualApprovalStep('manual-approval-before-production')]
+                    //}
                 })
-                .wave({
-                    id: "prod",
-                    stages: [
-                        {
-                            id: PROD_ENV_ID,
-                            stackBuilder: blueprint
-                                .clone(pipelineProps.prodEnv.region, pipelineProps.prodEnv.account)
-                                .name(PROD_ENV_ID)
-                                .teams(...prodTeams)
-                                .addOns(
-                                    prodArgoAddonConfig,
-                                )
-                        },
-                    ]
-                })
+                // .wave({
+                //     id: "prod",
+                //     stages: [
+                //         {
+                //             id: PROD_ENV_ID,
+                //             stackBuilder: blueprint
+                //                 .clone(pipelineProps.prodEnv.region, pipelineProps.prodEnv.account)
+                //                 .name(PROD_ENV_ID)
+                //                 .teams(...prodTeams)
+                //                 .addOns(
+                //                     prodArgoAddonConfig,
+                //                 )
+                //         },
+                //     ]
+                // })
                 .build(scope, "eks-blueprint-pipeline-stack", props);
         } catch (error) {
             console.log(error)
